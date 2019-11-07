@@ -42,4 +42,4 @@ for (let index = 0; index < output.length; index++) {
     }
 }
 //console.dir(output)
-console.dir(results)
+console.log(JSON.stringify(results))
