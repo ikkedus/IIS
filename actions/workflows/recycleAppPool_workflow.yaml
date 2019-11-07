@@ -33,7 +33,7 @@ tasks:
 
   recycle:
     action: bolt.command_run
-      input:
+    input:
       command: Restart-WebAppPool <% ctx(pool) %>
       nodes: <% ctx(host) %>
       private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
