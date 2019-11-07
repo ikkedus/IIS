@@ -6,6 +6,9 @@ runner_type: orquesta
 entry_point: workflows/recycleAppPool_workflow.yaml
 enabled: true
 parameters:
+  ignore_started:
+    required: false
+    type: boolean
   host:
     required: true
     type: string

@@ -4,6 +4,7 @@ description: gets the health of all app pools
 input:
   - host
   - pool
+  - ignore_started
 tasks:
   IsPoolprovided:
     action: core.noop
@@ -15,7 +16,8 @@ tasks:
   getPools:
     action: iis.getAppPoolState
     input:
-      host: <% host %>
+      ignore_started: <% ctx(ignore_started) %>
+      host: <% ctx(host) %>
     next:
       - when: <% succeeded() %>
         publish:
@@ -25,7 +27,7 @@ tasks:
     with: <% ctx(pools) %>
     action: bolt.command_run
     input:
-      command: Restart-WebAppPool <% item() %>
+      command: Restart-WebAppPool '<% item()["Name"] %>'
       nodes: <% ctx(host) %>
       private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
       user: Administrator
@@ -34,7 +36,7 @@ tasks:
   recycle:
     action: bolt.command_run
     input:
-      command: Restart-WebAppPool <% ctx(pool) %>
+      command: Restart-WebAppPool '<% ctx(pool) %>'
       nodes: <% ctx(host) %>
       private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
       user: Administrator

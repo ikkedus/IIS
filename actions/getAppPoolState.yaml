@@ -13,3 +13,7 @@ parameters:
     required: false
     type: string
     default: ""
+  ignore_started:
+    required: false
+    type: boolean
+    
