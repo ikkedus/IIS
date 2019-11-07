@@ -24,17 +24,18 @@ tasks:
   recycleAll:
     with: <% ctx(pools) %>
     action: bolt.command_run
-      input:
-        command: Restart-WebAppPool <% item() %>
-        nodes: <% ctx(host) %>
-        private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
-        user: Administrator
-        log_level: 'DEBUG'
+    input:
+      command: Restart-WebAppPool <% item() %>
+      nodes: <% ctx(host) %>
+      private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
+      user: Administrator
+      log_level: 'DEBUG'
+
   recycle:
     action: bolt.command_run
       input:
-        command: Restart-WebAppPool <% ctx(pool) %>
-        nodes: <% ctx(host) %>
-        private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
-        user: Administrator
-        log_level: 'DEBUG'
+      command: Restart-WebAppPool <% ctx(pool) %>
+      nodes: <% ctx(host) %>
+      private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
+      user: Administrator
+      log_level: 'DEBUG'
