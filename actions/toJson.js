@@ -9,16 +9,21 @@ let keys = []
 let results = [];
 
 const headToObj = (head) =>{
-    keys = head.split("\t");    
+    keys = head.replace(/\s\s+/g,',').split(",");
 }
 
 const tabsToJson = (row) => {
-    let values = row.split("\t");
+	if(row === '') return;
+    let values = row.replace(/\s\s+/g,',').split(",");
+    if (values.length === 5)
+	{
+		values.splice(2,0,"non")
+	}
     let result = {}
-    for (let index = 0; index < values.length; index++) {
+    for (let index = 0; index < values.length-1; index++) {
         const value = values[index];
-        const key = key[index];
-        result[key] = value;
+        const key = keys[index];
+	result[key] = value;
     }
     results.push(result);
 }
@@ -26,14 +31,15 @@ output = args.input.split("\n");
 for (let index = 0; index < output.length; index++) {
     const row = output[index];
     switch (index) {
-        case 0:
-            headToObj(row);
-            break;
         case 1:
+            headToObj(row.trim("/"));
+            break;
+        case 0 || 2:
             break;
         default:
-            tabsToJson(row);
+            tabsToJson(row.trim("/"));
             break;
     }
 }
+//console.dir(output)
 console.dir(results)

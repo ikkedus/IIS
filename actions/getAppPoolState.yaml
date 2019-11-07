@@ -9,3 +9,7 @@ parameters:
   host:
     required: true
     type: string
+  pool:
+    required: false
+    type: string
+    default: ""
