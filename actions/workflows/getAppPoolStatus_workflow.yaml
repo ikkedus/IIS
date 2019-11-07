@@ -15,12 +15,12 @@ tasks:
     next:
       - when: <% succeeded() %>
         publish:
-          - info: <% result().items[0].result.stdout %>
+          - info: <% result().result.items[0].result.stdout %>
         do: tojson
   tojson:
     action: core.local
     input:
-      cmd: echo "<% ctx(info) %>" | cut -d "----------" -f2 
+      cmd: echo "<% ctx(info) %>" | grep ed 
     next:
       - when: <% succeeded() %>
         publish:
