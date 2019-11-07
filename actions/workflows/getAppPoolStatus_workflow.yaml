@@ -27,4 +27,4 @@ tasks:
         publish:
           - apppools: <% result().stdout %>
 output:
-  - pools: <% ctx(apppools) %>
+  - pools: <% ctx(apppools).toJson() %>
