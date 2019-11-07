@@ -9,9 +9,9 @@ tasks:
     input:
       command: Get-IISAppPool
       nodes: <% ctx(host) %>
-      private_key: /opt/stackstorm/configs/Macbook-pro.pem
+      private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
       user: Administrator
-      transport: ssh
+      log_level: 'Debug'
     next:
       - when: <% succeeded() %>
         publish:
