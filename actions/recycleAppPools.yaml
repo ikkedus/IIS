@@ -1,0 +1,15 @@
+---
+name: "recycleAppPool"
+pack: iis
+description: ""
+runner_type: orquesta
+entry_point: workflows/recycleAppPool_workflow.yaml
+enabled: true
+parameters:
+  host:
+    required: true
+    type: string
+  pool:
+    required: false
+    type: string
+    default: ""

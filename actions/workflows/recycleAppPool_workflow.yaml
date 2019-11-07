@@ -1,0 +1,40 @@
+version: 1.0
+description: gets the health of all app pools
+
+input:
+  - host
+  - pool
+tasks:
+  IsPoolprovided:
+    action: core.noop
+    next:
+      - when: <% ctx(pool) == "" %>
+        do: getPools
+      - when: <% ctx(pool) != "" %>
+        do: recycle
+  getPools:
+    action: iis.getAppPoolState
+    input:
+      host: <% host %>
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - pools: <% result().stdout %>
+        do: recycleAll
+  recycleAll:
+    with: <% ctx(pools) %>
+    action: bolt.command_run
+      input:
+        command: Restart-WebAppPool <% item() %>
+        nodes: <% ctx(host) %>
+        private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
+        user: Administrator
+        log_level: 'DEBUG'
+  recycle:
+    action: bolt.command_run
+      input:
+        command: Restart-WebAppPool <% ctx(pool) %>
+        nodes: <% ctx(host) %>
+        private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
+        user: Administrator
+        log_level: 'DEBUG'
