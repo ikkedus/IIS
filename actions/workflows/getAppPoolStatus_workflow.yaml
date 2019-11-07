@@ -18,9 +18,9 @@ tasks:
           - info: <% result().result.items[0].result.stdout %>
         do: tojson
   tojson:
-    action: core.local
+    action: iis.AppPoolsToJson
     input:
-      cmd: echo "<% ctx(info) %>" | grep ed 
+      input: <% ctx(info) %>
     next:
       - when: <% succeeded() %>
         publish:

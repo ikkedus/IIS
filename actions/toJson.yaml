@@ -1,0 +1,11 @@
+---
+name: "AppPoolsToJson"
+pack: iis
+description: "get-apppools output to json"
+runner_type: local-shell-script
+entry_point: toJson.js
+enabled: true
+parameters:
+  input:
+    required: true
+    type: string
