@@ -1,0 +1,11 @@
+---
+name: "addSpaceToLVM"
+pack: iis
+description: ""
+runner_type: orquesta
+entry_point: workflows/getAppPoolStatus_workflow.yaml
+enabled: true
+parameters:
+  host:
+    required: true
+    type: string

@@ -8,7 +8,7 @@ tasks:
     action: bolt.command_run
     input:
       command: Get-IISAppPool
-      nodes: ["192.168.1.8"]
+      nodes: [<% ctx(host) %>]
       private_key: /opt/stackstorm/configs/Macbook-pro.pem
       user: Administrator
       transport: ssh
@@ -25,4 +25,3 @@ tasks:
       - when: <% succeeded() %>
         publish:
           - apppools: <% result().stdout %>
-          
