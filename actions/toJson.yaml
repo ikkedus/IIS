@@ -9,3 +9,6 @@ parameters:
   input:
     required: true
     type: string
+  ignore_started:
+    required: true
+    type: string
