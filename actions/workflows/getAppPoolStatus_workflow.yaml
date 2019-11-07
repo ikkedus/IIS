@@ -11,7 +11,7 @@ tasks:
       nodes: <% ctx(host) %>
       private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
       user: Administrator
-      log_level: 'Debug'
+      log_level: 'DEBUG'
     next:
       - when: <% succeeded() %>
         publish:
