@@ -25,6 +25,10 @@ const tabsToJson = (row) => {
         const key = keys[index];
 	result[key] = value;
     }
+    if(result.Status == "Started" && args.ignore_started)
+    {
+        return;
+    }
     results.push(result);
 }
 output = args.input.split("\n");
