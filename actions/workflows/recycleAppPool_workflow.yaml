@@ -16,7 +16,7 @@ tasks:
   getPools:
     action: iis.getAppPoolState
     input:
-      ignore_started: <% ctx(ignore_started) %>
+      ignore_started: <% ctx(ignore_started) != None %>
       host: <% ctx(host) %>
     next:
       - when: <% succeeded() %>
@@ -32,7 +32,6 @@ tasks:
       private_key: "/opt/stackstorm/configs/Macbook-pro.pem"
       user: Administrator
       log_level: 'DEBUG'
-
   recycle:
     action: bolt.command_run
     input:

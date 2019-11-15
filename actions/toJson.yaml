@@ -11,4 +11,5 @@ parameters:
     type: string
   ignore_started:
     required: true
+    default: false
     type: boolean
